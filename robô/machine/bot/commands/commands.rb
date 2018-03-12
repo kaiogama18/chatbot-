@@ -1,6 +1,37 @@
 module Commands
   # Você pode escrever todos os seus comandos como métodos aqui
 
+  def cpf
+    message.typing_on
+    case message.quick_reply
+    when 'OK'
+      say "Informe o numero!"
+      next_command :appear_nice2
+    when 'NOT_OK'
+      say "Continue"
+      
+      stop_thread
+    else
+      say "Obrigado"
+      # Boa Prática ter outar pergunta
+      stop_thread
+    end
+    message.typing_off
+  end
+
+  def appear_nice2
+    validar = message.typing_on
+    total = validar.size
+    aux = message.typing_on
+    if validar.size == 35 
+      say "Cpf válido!"
+      stop_thread
+    else
+      say "Cpf inválido"
+      stop_thread
+    end 
+  end
+  
   # Se o comando estiver vinculado com reply_with especificado,
   # você precisa lidar com a resposta do usuário para a última mensagem e reagir nela.
   def start_conversation
@@ -14,7 +45,7 @@ module Commands
       stop_thread
     when 'NOT_OK'
       say "Que pena. O que aconteceu?"
-      next_command :appear_nice  #Respsta para pergunta 
+      next_command :appear_nice  #Resposta para pergunta 
     else
       say "Pode informar o seu cpf?"
       # Boa Prática ter outar pergunta

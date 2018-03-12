@@ -11,7 +11,7 @@ module Profile
     greeting: [
       {
         locale: 'default',
-        text: "Hello and welcome, {{user_first_name}}! Say 'hi!'"
+        text: "oi e bem vindo, {{user_first_name}}! Say 'oi!'"
       }
     ]
   }

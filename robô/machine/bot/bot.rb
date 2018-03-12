@@ -16,18 +16,25 @@ Rubotnik.route :message do
   bind 'oi', 'fala', 'eai' do
     say 'Bem vindo(a) sou uma máquina que gosta de falar'
   end
-  
+
+
   # Inicie uma discussão (e forneça uma mensagem de abertura com respostas rápidas opcionais).
   # Você precisa definir o método denominado como símbolo dentro de um módulo de comando
   # e trate a resposta do usuário para sua mensagem "reply_with" lá.
   # commands / commands.rb já possui esse método start_conversation
   # definido como um exemplo.
 
-  bind 'como', 'você', 'está', all: true, to: :start_conversation, reply_with: {
-     text: "Eu estou bem! Você?",
-     quick_replies: [['De Boa!', 'OK'], ['Não muito bem', 'NOT_OK']]
-   }
+  bind 'cpf', all: true, to: :cpf, reply_with: {
+    text: "Informe a categoria",
+    quick_replies: [['Validação', 'OK'], ['Só informar', 'NOT_OK']]
+  }
 
+
+  bind 'como', 'você', 'está', all: true, to: :start_conversation, reply_with: {
+    text: "Eu estou bem! Você?",
+    quick_replies: [['De Boa!', 'OK'], ['Não muito bem', 'NOT_OK']]
+  }
+   
    # Comando 'All' é utilizado quando todas as palavras estivem no campo
    bind 'Qual', 'meu', 'nome', all: true do
      info = get_user_info(:first_name) 
@@ -41,12 +48,12 @@ Rubotnik.route :message do
 
     
     # Rubotnik atualmente suporta Imagem, Modelo de Botão e Carrossel
-    bind 'image', to: :show_image
+  bind 'image', to: :show_image
 
    # Quando não tem resposta ou não entendeu
-   default do
-     say "Desculpe, eu não entendi"
-   end
+  default do
+    say "Desculpe, eu não entendi"
+  end
 end
 
 ####################### HANDLE ENTRADA POSTBACKS ##############################
