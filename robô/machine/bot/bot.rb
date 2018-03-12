@@ -16,9 +16,7 @@ Rubotnik.route :message do
   bind 'oi', 'fala', 'eai' do
     say 'Bem vindo(a) sou uma máquina que gosta de falar'
   end
-
-  bind 
-
+  
   # Inicie uma discussão (e forneça uma mensagem de abertura com respostas rápidas opcionais).
   # Você precisa definir o método denominado como símbolo dentro de um módulo de comando
   # e trate a resposta do usuário para sua mensagem "reply_with" lá.
@@ -63,7 +61,7 @@ end
 ####################### HANDLE OUTROS PEDIDOS (NON-FB) #########################
 
 get '/' do
-  'Eu também posso ter uma página de destino!'
+  'Eu sou o Index do localhost'
 end
 
 ####################### CPF #########################
