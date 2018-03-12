@@ -1,24 +1,23 @@
 module Commands
-  # You can write all your commands as methods here
+  # Você pode escrever todos os seus comandos como métodos aqui
 
-  # If the command is bound with reply_with specified,
-  # you have to deal with user response to the last message and react on it.
+  # Se o comando estiver vinculado com reply_with especificado,
+  # você precisa lidar com a resposta do usuário para a última mensagem e reagir nela.
   def start_conversation
-    # Quick replies are accessible through message object's quick_reply property,
-    # by default it's the quick reply text in ALL CAPS
-    # you can also react on the text itself
+    # As respostas rápidas são acessíveis através da propriedade quick_reply do objeto de mensagem,
+    # por padrão é o texto de resposta rápida em TODOS OS CAPS
+    # você também pode reagir no próprio texto
     message.typing_on
     case message.quick_reply
     when 'OK'
-      say "Glad you're doing well!"
+      say "Fico feliz que esteja bem!"
       stop_thread
     when 'NOT_OK'
-      say "Too bad. What happened?"
-      next_command :appear_nice
+      say "Que pena. O que aconteceu?"
+      next_command :appear_nice  #Respsta para pergunta 
     else
-      say "🤖"
-      # it's always a good idea to have an else, quick replies don't
-      # prevent user from typing any message in the dialogue
+      say "Pode informar o seu cpf?"
+      # Boa Prática ter outar pergunta
       stop_thread
     end
     message.typing_off
@@ -27,12 +26,12 @@ module Commands
   def appear_nice
     message.typing_on
     case message.text
-    when /job/i then say "We've all been there"
-    when /family/i then say "That's just life"
+    when /job/i then say "Minhas sinceras condolências 😥"
+    when /family/i then say "Isso é apenas a vida"
     else
-      say "It shall pass"
+      say "Deve passar 😱"
     end
     message.typing_off
-    stop_thread # future messages from user will be handled from top-level bindings
+    stop_thread # futuras mensagens do usuário serão manipuladas a partir de ligações de nível superior
   end
 end

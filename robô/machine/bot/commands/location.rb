@@ -1,12 +1,12 @@
 module Commands
   API_URL = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='.freeze
 
-  # Lookup based on location data from user's device
+  # Pesquisa baseada em dados de localização do dispositivo do usuário
   def lookup_location
     if message_contains_location?
       handle_user_location
     else
-      say("Please try your request again and use 'Send location' button")
+      say("Por favor, tente novamente usando o botão 'Enviar localização'")
     end
     stop_thread
   end
@@ -18,8 +18,8 @@ module Commands
     message.typing_on
     parsed = get_parsed_response(API_URL, "#{lat},#{long}")
     address = extract_full_address(parsed)
-    say "Coordinates of your location: Latitude #{lat}, Longitude #{long}. " \
-        "Looks like you're at #{address}"
+    say "Coordenadas da sua localização: Latitude #{lat}, Longitude #{long}. " \
+        "Parece que você está em #{address}"
     message.typing_off
   end
 
